@@ -69,135 +69,39 @@ Not every entry needs all fields. The essentials are: Observation, Type, Severit
 
 ---
 
-## 2026-02-13 — Auto-play: execute SC code directly from the conversation
+## 2026-02-14 — Selectable voices and natural language config
 
 **Type:** process
 **Severity:** major
-**Task:** compose / iterate
+**Task:** all tasks
 **Status:** pending
 
 **Observation:**
-The current workflow requires the user to copy generated SC code, switch to SuperCollider, paste, and execute. This breaks creative flow. The AI has access to `sclang` (SC's command-line interpreter) and could run .scd files directly, making the conversation feel like jamming rather than code handoff.
+The AI's creative identity (voice-and-values.md) is currently a single fixed voice — the Lennon & McCartney creative partner. Users should be able to choose among voices (creative partner, music educator, production coach, etc.) or describe a custom one. More importantly, because NLA config is prose interpreted by an LLM, users aren't limited to enum choices. They can say "creative partner, but lean into teaching when I'm clearly lost" or "music educator who assumes I know jazz theory but not classical." This applies to all config settings, not just voice.
 
 **Confirmed reason:**
-User proposed: "Could be nice... Try X / OK, how about this? (writes code; opens SC and/or plays file)." The goal is removing mechanical friction between creative idea and hearing it.
+User identified: "the power of an NLA — you can make big changes without huge changes in code." And on config: "users can say 'option a, but...' or 'option c, and...' This is powerful. It means they can modify application behavior in meaningful ways without rewriting the application... they're baked in features of NLAs and LLMs."
 
-**Generalizable:** yes — any user with SC installed locally benefits
+**Generalizable:** yes — both the voice pattern and the natural language config insight apply to any NLA
 
 **Affected documentation:**
-- `app/config-spec.md` — add auto-play as a configurable option
-- `app/common-patterns.md` — document the play workflow
-- `app/iterate.md` — integrate auto-play into the iterate loop
-- New: `/setup` skill should verify sclang is accessible
+- `app/shared/voice-and-values.md` — Split into invariant values + selectable voice files
+- `app/config-spec.md` — Add Voice setting; broaden all config guidance to embrace natural language modifiers
+- `app/shared/voices/` — New directory for base voice files
+- New: voice template for users writing custom voices
+- All task doc prerequisites — "read voice-and-values.md" becomes "read values.md + configured voice"
+- Framework: `core/nla-foundations.md` or config guidance should discuss natural language config as a fundamental NLA capability
 
 **Proposed fix:**
-1. Add config option: `Auto-play: off | on` (default off). When on, the AI executes .scd files via sclang after writing them.
-2. Implementation considerations:
-   - Stop previous audio before playing new audio (send `s.freeAll` or equivalent)
-   - Keep scsynth server running between iterations (avoid boot time on every play)
-   - Surface sclang compilation errors conversationally — don't dump raw output
-   - Run sclang in background so the conversation isn't blocked
-   - Could also support opening files in the SC IDE as an alternative to headless play
-3. The AI should always still present the code and commentary — auto-play supplements the conversation, doesn't replace it.
-4. Worth exploring: could the AI detect when audio is playing and prompt for feedback after a reasonable listening period?
+1. Split `voice-and-values.md` into `values.md` (invariant: can't hear music, human decides, honesty) and voice files in `voices/` directory.
+2. Ship 2-3 well-crafted base voices. Quality over quantity — each needs iteration.
+3. Voice config setting: a voice name (loads the file), a voice name with natural language modifications, or a fully custom description.
+4. Voice template for custom voices: what to include (identity, communication style, priorities, approach to disagreement), what principles are non-negotiable (the values).
+5. Broaden config-spec guidance: enums are convenient defaults, natural language is the real interface. Every setting can accept "X, but..." or "X, and..." modifiers.
+6. File the natural language config insight as framework feedback — it's a fundamental NLA capability the framework should discuss.
 
 **Notes:**
-This is a significant UX improvement that leverages the NLA's ability to use tools. A traditional app would need to build an SC integration layer. The NLA just runs a shell command. The /setup skill should verify sclang is on the PATH as part of environment checking.
-
----
-
-## 2026-02-13 — Composition lifecycle and workflow skills
-
-**Type:** process
-**Severity:** major
-**Task:** compose (first session)
-**Status:** pending
-
-**Observation:**
-The system needs awareness of active compositions at startup and deliberate lifecycle transitions. Currently /startup loads system context but doesn't know what the user has been working on. There's no way to shelve, finish, resume, or fork a composition.
-
-**Confirmed reason:**
-User identified: session startup should show active pieces and let the user pick one. Lifecycle transitions should be deliberate moments that capture context — "the real value is prompting the user for notes at the moment they're most likely to have insight and least likely to write it down voluntarily."
-
-**Generalizable:** yes
-
-**Affected documentation:**
-- `app/overview.md` — add lifecycle skills to skill table
-- `.claude/skills/` — new skills: /shelve, /finish, /resume
-- Startup skill needs update to scan active pieces
-
-**Proposed fix:**
-1. Enhanced /startup: after loading system context, read the music directory's `active/` folder. If 1-4 active pieces, use AskUserQuestion to let user pick which to continue (or start new). If more, list them.
-2. `/shelve` skill: prompts for a note (why shelving, what state), updates context.md, moves folder from active/ to shelved/.
-3. `/finish` skill: captures final notes and lessons learned, moves to done/.
-4. `/resume` skill: moves piece from shelved/ back to active/, reads context.md, picks up collaboration.
-5. Forking: when user wants to try a different direction, copy the piece folder with a new name. Could be part of /iterate or triggered by natural language ("let's fork this").
-
----
-
-## 2026-02-13 — Setup skill and requirements system
-
-**Type:** process
-**Severity:** major
-**Task:** compose (first session)
-**Status:** pending
-
-**Observation:**
-Pieces may require specific software, extensions, or configurations (e.g., sc3-plugins for DWGBowed). No way to track what's needed or what's installed. The NLA can handle cross-platform installation naturally without coded platform detection.
-
-**Confirmed reason:**
-User identified: "you're actually completely capable of doing the setup for the user... one of the nice things about an NLA is that we actually don't have to code this sort of functionality for different platforms." Also noted that the sound engine itself (SuperCollider) shouldn't be hard-wired — other users might use different software.
-
-**Generalizable:** yes
-
-**Affected documentation:**
-- `app/config-spec.md` — add sound engine as configurable setting
-- New: `/setup` skill
-- New: environment.md spec (music directory root)
-
-**Proposed fix:**
-1. `/setup` skill: reads piece-level `requirements.md`, reads `environment.md` (music dir root) to see what's installed, identifies gaps, installs with user confirmation, updates environment.md.
-2. `environment.md` at music directory root, AI-maintained: records platform, sound engine, installed extensions.
-3. Piece-level `requirements.md`: human-readable, AI-actionable. "Requires sc3-plugins (for DWGBowed)."
-4. Sound engine should be a config setting, not hard-wired. Output spec and common patterns should eventually support other engines.
-5. User platform preference in config.md or auto-detected. Always confirm before installing.
-
----
-
-## 2026-02-13 — Music directory structure and composition persistence
-
-**Type:** process
-**Severity:** major
-**Task:** compose (first session)
-**Status:** pending
-
-**Observation:**
-First composition session revealed no structure for saving compositions. The system needs a standard way to organize music files, persist creative context across sessions, and track iteration history. Context persistence is especially important for NLA workflows — the AI needs to understand not just what was composed but why, and what was rejected.
-
-**Confirmed reason:**
-User identified: "documenting intent and the whys is just as important — or even more important, especially when it comes time to iterate. If a new session is started without any context we want to be able to pick up where we left off."
-
-**Generalizable:** yes
-
-**Affected documentation:**
-- `app/overview.md` — document music directory convention
-- `app/compose.md` — add step for saving output and drafting context.md
-- `app/iterate.md` — add step for reading/updating context.md
-- `app/config-spec.md` — add music directory path setting
-- New: `app/templates/context-template.md`
-
-**Proposed fix:**
-1. Standard music directory structure (sibling to app, separate git repo):
-   - `active/` — pieces in progress, each in its own folder
-   - `done/` — finished work
-   - `shelved/` — parked ideas (not "archived" — implies possible return)
-   - Each piece folder: sketch.scd, context.md, requirements.md, iterations/
-2. `context.md` template with sections: Concept, Sound Engine, Decisions (with reasoning), Rejected (with reasoning), References, Listening Notes, Unresolved, Iteration History.
-3. Music directory path configurable in config-spec.md (default: ../duet-music/).
-4. No persistent index file — AI reads folders and context.md files on demand. Index generated on request, not maintained.
-5. Piece folders use freeform names for memorability.
-6. AI drafts context.md, human reviews. Distillation of conversation, not transcript.
-7. The iterate contract: update context.md before updating code — intent first, implementation second.
+This is an architectural change that deserves its own /maintain session. The voice split affects all task doc prerequisites (similar scope to the output-spec rename). The natural language config insight is framework-level and should be added to the framework feedback letter.
 
 ---
 

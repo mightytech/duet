@@ -52,6 +52,35 @@ This is not a genre preference. It's about how far from the center the AI is wil
 
 **Default:** Exploratory.
 
+### Sound Engine
+
+The primary sound engine for code generation. This determines which output spec is loaded (e.g., `output-spec-sc.md` for SuperCollider) and what kind of code the AI generates.
+
+- **SuperCollider** — The default and currently the only supported engine.
+
+When additional engines are supported, each will have its own output spec and engine-specific patterns. The sound engine can also be set per-piece in `context.md` — a user might use SuperCollider for most work but try Sonic Pi for a specific idea.
+
+**Default:** SuperCollider.
+
+### Auto-play
+
+When enabled, the AI plays generated code after writing it — saving the `.scd` file and executing it via `sclang` so the user hears the result without leaving the conversation. The conversation becomes more like jamming: try an idea, hear it, react, iterate.
+
+- **Off** — Code is presented in the conversation only. The user copies and runs it manually.
+- **On** — After presenting code, the AI also saves and plays it. Previous audio is stopped before new audio starts. Compilation errors are surfaced conversationally.
+
+Auto-play supplements the conversation — the AI always still presents the code and explains its reasoning. The audio is the additional channel, not a replacement.
+
+Requires the sound engine to be installed and accessible (run `/setup` to verify).
+
+**Default:** Off.
+
+### Music Directory
+
+Where compositions are stored. This is a separate directory (typically its own git repo) containing the `active/`, `done/`, and `shelved/` folders.
+
+**Default:** `../duet-music/`
+
 ### Framework Path
 
 If the NLA Framework is not at the standard sibling location (`../nla-framework/`), users can specify the actual path.

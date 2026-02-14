@@ -58,11 +58,16 @@ Config directives are governed by `app/config-spec.md`, which defines what's con
 
 | Skill | Purpose | Invocation |
 |-------|---------|------------|
-| `/startup` | Load foundational context for the NLA runtime | At session start, or to refresh context |
+| `/startup` | Load foundational context and check active pieces | At session start, or to refresh context |
 | `/compose` | Start a new composition from a concept or mood | When the user has an idea to explore |
 | `/iterate` | Refine the composition based on listening feedback | When the user has heard the current version and reacts |
 | `/critique` | Get an honest assessment of the current composition | When the user wants perspective |
 | `/spark` | Get a contextual creative provocation | When stuck or wanting lateral input |
+| `/snapshot` | Save a versioned snapshot of the current piece | When the user wants to bookmark the current state |
+| `/shelve` | Park the current piece for later | When the user wants to set a piece aside |
+| `/finish` | Mark a piece as done and capture reflections | When a piece is complete |
+| `/resume` | Bring a shelved piece back to active work | When the user wants to return to a shelved piece |
+| `/setup` | Check environment and install what's needed | When the user needs to verify or install dependencies |
 | `/preferences` | Create or edit user configuration | When the user wants to personalize behavior |
 | `/friction-log` | Log observations to the friction log from any context | When you notice something worth recording |
 | `/maintain` | Edit the NLA system itself (docs, skills, lib/) | When the user wants to improve or modify the system |

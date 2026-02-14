@@ -61,6 +61,32 @@ The friction log (`reference/friction-log.md`) is NOT loaded during composition.
 
 ---
 
+### Lifecycle as a Unified Pattern
+
+Snapshots, shelving, and finishing are all the same core operation: prompt for a note, freeze state, put it somewhere. The only differences are destination (`iterations/`, `shelved/`, `done/`) and whether the piece stays active. This was the user's insight — originally snapshots were deferred as "needs to develop through use," but recognizing them as a variant of the shelve/finish pattern made the design clear enough to implement immediately.
+
+Forking is handled as a conversational pattern during `/iterate` rather than a dedicated skill. It's a natural creative moment ("what if we went a totally different direction?"), not a lifecycle transition.
+
+### Context.md as Session Bridge
+
+The `context.md` file in each piece folder is the primary mechanism for cross-session continuity. It's a curated distillation of intent and decisions, not a transcript. The template (`app/templates/context-template.md`) is scaffolding for the AI, not a form for the human — the AI uses judgment about which sections are relevant. When humans override the structure, that's valuable signal.
+
+The iterate contract: update context.md when there's intent worth preserving. The trigger is "would a future session need to know this?" not "how big was the code change?" — because small code changes can carry big decisions (e.g., 4/4 to 7/8).
+
+### Engine-Specific Output Specs
+
+Rather than making output-spec.md engine-agnostic (which would require premature abstraction), the spec is explicitly locked to an engine: `output-spec-sc.md`. When a second engine is added, it gets its own spec (`output-spec-sonic-pi.md`, etc.). This avoids watering down engine-specific guidance and ensures each engine gets tailored patterns.
+
+The alternative — one generic output spec with engine-specific sections — was rejected because the overlap between engines is unknown. If significant overlap emerges, shared content can be extracted then. Better to duplicate a little than to abstract prematurely.
+
+`common-patterns.md` stays engine-agnostic since most of its content (conversation conventions, file management, lifecycle) applies regardless of engine. Its SC-specific code conventions section is clearly labeled.
+
+### Environment as a Cache
+
+`environment.md` at the music directory root is an AI-maintained cache of platform detection results, not a config file. The `/setup` skill writes it; `/startup` reads it. This avoids re-detecting the platform every session while keeping the information up-to-date. The user never needs to edit this file directly.
+
+---
+
 ## Adding Decisions
 
 When you make architectural changes (not just wording fixes), add an entry here documenting:

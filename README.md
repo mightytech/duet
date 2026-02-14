@@ -24,11 +24,12 @@ git clone <framework-repo-url> ../nla-framework
 ## Quick Start
 
 1. Start Claude Code in this directory
-2. Run `/startup` to load foundational context
+2. Run `/startup` — loads context and shows your active pieces
 3. Run `/compose` and describe what you want to hear
-4. Copy the generated code into SuperCollider and play it
+4. Listen (auto-play runs it for you, or copy into SuperCollider)
 5. Tell the AI what you hear — run `/iterate` to refine
 6. Use `/critique` for honest feedback, `/spark` when you're stuck
+7. Use `/snapshot` to save a version, `/shelve` to park it, `/finish` when done
 
 ---
 
@@ -41,7 +42,9 @@ git clone <framework-repo-url> ../nla-framework
 │   ├── shared/
 │   │   ├── voice-and-values.md      # Creative identity and collaboration style
 │   │   ├── common-patterns.md       # Shared conventions for code and conversation
-│   │   └── output-spec.md           # Output format (SC code + commentary)
+│   │   └── output-spec-sc.md        # Output format: SuperCollider
+│   ├── templates/
+│   │   └── context-template.md      # Scaffolding for new piece context files
 │   ├── config-spec.md               # What users can configure (developer-defined)
 │   ├── compose.md                   # Start a composition
 │   ├── iterate.md                   # Refine through feedback
@@ -56,11 +59,16 @@ git clone <framework-repo-url> ../nla-framework
 │   ├── system-status.md             # Current state snapshot
 │   └── sessions/                    # Maintenance session archives
 ├── .claude/skills/                  # Skill entry points
-│   ├── startup/                     # Framework wrapper
+│   ├── startup/                     # Load context, check active pieces
 │   ├── compose/                     # Start a composition
 │   ├── iterate/                     # Refine through feedback
 │   ├── critique/                    # Evaluate composition
 │   ├── spark/                       # Creative provocation
+│   ├── snapshot/                    # Save a versioned snapshot
+│   ├── shelve/                      # Park a piece for later
+│   ├── finish/                      # Mark a piece as done
+│   ├── resume/                      # Bring a shelved piece back
+│   ├── setup/                       # Check environment, install dependencies
 │   ├── maintain/                    # Framework wrapper
 │   ├── friction-log/                # Framework wrapper
 │   ├── plan/                        # Framework wrapper
@@ -81,6 +89,11 @@ You have an idea → /compose generates a starting point → You listen in Super
 At any point:
 - `/critique` — Ask the AI to step back and assess the whole piece
 - `/spark` — Get a creative provocation when you're stuck or comfortable
+- `/snapshot` — Save the current state as a version you can return to
+- `/shelve` — Park the piece for later (captures your thoughts for future you)
+- `/finish` — Mark the piece as done and capture what you learned
+- `/resume` — Bring a shelved piece back to active work
+- `/setup` — Check your environment and install what's needed
 
 The AI is a partner, not a tool. It has opinions, pushes back when it disagrees, and suggests ideas you didn't ask for. But you're the one who can hear the music, so you always have the final call.
 
@@ -94,6 +107,9 @@ Run `/preferences` to personalize how Duet behaves:
 - **Collaboration style** — How opinionated the AI is (deferential / balanced / opinionated)
 - **SC detail level** — How much SuperCollider code is explained (beginner / intermediate / expert)
 - **Adventurousness** — How far the AI pushes from conventional territory (grounded / exploratory / experimental)
+- **Sound engine** — Which engine to generate code for (SuperCollider; more to come)
+- **Auto-play** — Whether the AI plays code automatically via sclang (off / on)
+- **Music directory** — Where compositions are stored (default: `../duet-music/`)
 
 Config files are gitignored so that `git pull` updates the app without touching your preferences.
 

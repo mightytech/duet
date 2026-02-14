@@ -31,7 +31,7 @@ If the human is vague, that's fine. Vagueness is a creative starting point, not 
 1. **[NLA Foundations](../nla-framework/core/nla-foundations.md)** — Understand what you're doing
 2. **[Voice and Values](shared/voice-and-values.md)** — Your creative identity
 3. **[Common Patterns](shared/common-patterns.md)** — Conventions for code and conversation
-4. **[Output Spec](shared/output-spec.md)** — Output format details
+4. **[Output Spec: SuperCollider](shared/output-spec-sc.md)** — SC output format details
 
 ---
 
@@ -73,6 +73,29 @@ After the code, tell the human:
 4. One or two directions this could go next
 
 The goal is to start the conversation, not deliver a finished product.
+
+If auto-play is enabled, save the code to the piece's `.scd` file and play it now — let the user hear the sketch while the conversation is fresh. Follow the play workflow in common-patterns.md. Invite them to listen: "I'm playing the sketch now — listen for how the three voices interact."
+
+### Step 5: Save the Composition
+
+Once the human has reacted to the sketch (even briefly), persist the work:
+
+1. **Name the piece.** Suggest a short, memorable name based on the concept conversation. The human approves or renames. This becomes the folder name — freeform, no conventions beyond memorability.
+
+2. **Create the piece folder** in the music directory (read from config, default `../duet-music/`):
+   ```
+   active/[piece-name]/
+   ├── sketch.scd          ← The initial code
+   ├── context.md          ← Distilled from the conversation
+   ├── requirements.md     ← If the piece needs specific dependencies
+   └── iterations/         ← For future version snapshots
+   ```
+
+3. **Draft `context.md`** using the template at `app/templates/context-template.md` as scaffolding. Distill the conversation into the relevant sections — this is a curated summary of intent and decisions, not a transcript. Include what was rejected and why. Use judgment about which sections are relevant; skip sections that don't apply. Present the draft to the human for review.
+
+4. **Create `requirements.md`** if the piece depends on specific software, extensions, or configurations (e.g., "Requires sc3-plugins for DWGBowed"). Skip this file if there are no special requirements.
+
+5. **Save `sketch.scd`** — the complete, runnable code from Step 3.
 
 ---
 

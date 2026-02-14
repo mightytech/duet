@@ -77,11 +77,16 @@ Each task has an explicit entry point — a Claude Code skill:
 
 | Skill | Purpose |
 |-------|---------|
-| `/startup` | Load foundational context at session start |
+| `/startup` | Load foundational context and check active pieces |
 | `/compose` | Start a new composition from a concept or mood |
 | `/iterate` | Refine the composition based on listening feedback |
 | `/critique` | Get an honest assessment of the current composition |
 | `/spark` | Get a contextual creative provocation |
+| `/snapshot` | Save a versioned snapshot of the current piece |
+| `/shelve` | Park the current piece for later |
+| `/finish` | Mark a piece as done and capture reflections |
+| `/resume` | Bring a shelved piece back to active work |
+| `/setup` | Check environment and install what's needed |
 | `/preferences` | Create or edit user configuration |
 | `/friction-log` | Log observations to the friction log from any context |
 | `/maintain` | Edit the NLA system itself |
@@ -134,7 +139,10 @@ app/
 ├── shared/
 │   ├── voice-and-values.md          ← Creative identity and collaboration style
 │   ├── common-patterns.md           ← Shared conventions for code and conversation
-│   └── output-spec.md               ← Output format (SC code + commentary)
+│   └── output-spec-sc.md             ← Output format: SuperCollider
+│
+├── templates/
+│   └── context-template.md          ← Scaffolding for new piece context files
 │
 ├── config-spec.md                   ← What users can configure (developer-defined)
 │
@@ -158,6 +166,24 @@ reference/
 └── sessions/                        ← Maintenance session archives
 ```
 
+### Music Directory
+
+Compositions live in a separate directory (configurable, default `../duet-music/`), typically its own git repo. This keeps creative work separate from the system itself.
+
+```
+../duet-music/
+├── active/                          ← Pieces in progress
+│   └── [piece-name]/
+│       ├── sketch.scd               ← Current code
+│       ├── context.md               ← Intent, decisions, history
+│       ├── requirements.md          ← Dependencies (if any)
+│       └── iterations/              ← Version snapshots
+├── done/                            ← Finished work
+└── shelved/                         ← Parked ideas (may return)
+```
+
+Each piece lives in its own folder with a freeform, memorable name. The `context.md` file is the bridge between sessions — it captures what the piece is about, what was decided (and rejected), and what's unresolved. The AI drafts it, the human reviews it. See `app/templates/context-template.md` for the starting scaffolding.
+
 ---
 
 ## Document Index
@@ -165,7 +191,7 @@ reference/
 ### Shared Context
 - [Voice and Values](shared/voice-and-values.md) — Creative identity, collaboration style, values
 - [Common Patterns](shared/common-patterns.md) — Shared conventions for code and conversation
-- [Output Spec](shared/output-spec.md) — Output format details
+- [Output Spec: SuperCollider](shared/output-spec-sc.md) — SC output format details
 - [Config Spec](config-spec.md) — What users can configure and how
 
 ### Tasks

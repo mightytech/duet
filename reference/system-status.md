@@ -6,7 +6,7 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ## Last Updated
 
-Initial project creation
+2026-02-14 — Auto-play support
 
 ## System State
 
@@ -25,7 +25,7 @@ Initial project creation
 
 | Skill | Status | Notes |
 |-------|--------|-------|
-| /startup | Ready | Loads foundational context |
+| /startup | Ready | Loads foundational context + scans active pieces |
 | /compose | Ready | Start a composition |
 | /iterate | Ready | Refine through feedback |
 | /critique | Ready | Evaluate composition |
@@ -34,10 +34,24 @@ Initial project creation
 | /friction-log | Ready | Observation capture |
 | /maintain | Ready | System maintenance |
 | /validate | Ready | System validation and debugging |
+| /snapshot | Ready | Save versioned snapshot of current piece |
+| /shelve | Ready | Park current piece for later |
+| /finish | Ready | Mark piece as done |
+| /resume | Ready | Bring shelved piece back to active |
+| /setup | Ready | Environment check and dependency installation |
 | /plan | Ready | Planning mode |
 
 ### Recent Changes
 
+- Added auto-play config option and play workflow in common-patterns (2026-02-14)
+- Created /setup skill with environment.md caching (2026-02-14)
+- Added Sound Engine to config-spec, renamed output-spec to output-spec-sc (2026-02-14)
+- Added environment check to /startup (2026-02-14)
+- Added lifecycle skills: /snapshot, /shelve, /finish, /resume (2026-02-14)
+- Expanded /startup with active piece awareness (2026-02-14)
+- Added forking convention and lifecycle table to common-patterns (2026-02-14)
+- Codified music directory conventions: config-spec, compose, iterate, overview, common-patterns (2026-02-14)
+- Created context-template.md for piece context scaffolding (2026-02-14)
 - Initial project creation via `/create-app`
 
 ---

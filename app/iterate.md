@@ -36,7 +36,8 @@ Feedback may be precise ("lower the cutoff frequency on the filter") or impressi
 1. **[NLA Foundations](../nla-framework/core/nla-foundations.md)** — Understand what you're doing
 2. **[Voice and Values](shared/voice-and-values.md)** — Your creative identity
 3. **[Common Patterns](shared/common-patterns.md)** — Conventions for code and conversation
-4. **[Output Spec](shared/output-spec.md)** — Output format details
+4. **[Output Spec: SuperCollider](shared/output-spec-sc.md)** — SC output format details
+5. **The piece's `context.md`** — Read the full context file from the piece folder. This is how you pick up the collaboration: what the concept is, what decisions were made and why, what was rejected, what's unresolved. Without this, you're starting blind.
 
 ---
 
@@ -84,6 +85,23 @@ Show the complete, runnable code. Highlight what changed with comments if the co
 Tell the human specifically what to listen for:
 - "The first 4 bars are the same as before. At bar 5, listen for how the new bass line changes the feel."
 - "A/B this with the previous version — the difference is subtle but it should feel more spacious."
+
+If auto-play is enabled, save the updated code and play it now. Follow the play workflow in common-patterns.md. Stop previous audio before starting the new version.
+
+### Step 6: Update Context
+
+After changes land, update the piece's `context.md` to capture what happened and why. This is the iterate contract: **intent before implementation** — record what was decided before (or as) you update the code.
+
+**When to update:** When there's intent worth preserving. The question is "would a future session need to know this?" not "how big was the code change?" A filter cutoff tweak might not be worth logging. Moving from 4/4 to 7/8 absolutely is — even though the code diff might be small. Use judgment. Batching several small tweaks into one context update is fine when none of them individually carry notable reasoning.
+
+**What to update:**
+- **Decisions** — Add new decisions with their reasoning
+- **Rejected** — Add ideas that were tried and set aside
+- **Listening Notes** — Capture what the human reports hearing
+- **Unresolved** — Update open questions (some get answered, new ones emerge)
+- **Iteration History** — Add a brief entry for the version
+
+**How to update:** Distill, don't transcribe. Context.md is a curated record of the collaboration's intent and reasoning, not a conversation log. Write it so a cold-start session can pick up the thread.
 
 ---
 
