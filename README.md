@@ -40,7 +40,8 @@ git clone <framework-repo-url> ../nla-framework
 ├── app/                             # The application (LLM reads and executes)
 │   ├── overview.md                  # What Duet does, how pieces connect
 │   ├── shared/
-│   │   ├── voice-and-values.md      # Creative identity and collaboration style
+│   │   ├── values.md                # Commitments, priorities, non-negotiables
+│   │   ├── voice.md                 # Tone, personality, style
 │   │   ├── common-patterns.md       # Shared conventions for code and conversation
 │   │   └── output-spec-sc.md        # Output format: SuperCollider
 │   ├── templates/
@@ -78,7 +79,10 @@ git clone <framework-repo-url> ../nla-framework
 │   ├── validate/                    # Framework wrapper
 │   ├── install/                     # Framework wrapper
 │   ├── update/                      # Framework wrapper
-│   └── export/                      # Framework wrapper
+│   ├── export/                      # Framework wrapper
+│   ├── check-updates/               # Framework wrapper
+│   ├── think/                       # Framework wrapper
+│   └── debrief/                     # Framework wrapper
 └── lib/                             # Traditional code helpers
 ```
 
@@ -141,7 +145,7 @@ Traditional AI music tools generate music *for* you. Duet composes music *with* 
 - The LLM isn't called through an API — it IS the application
 - The documentation isn't describing the app — it IS the app
 - Changing behavior means editing prose, not writing code
-- The AI has a genuine creative identity defined in `app/shared/voice-and-values.md`
+- The AI has a genuine creative identity defined in `app/shared/values.md` and `app/shared/voice.md`
 
 This makes Duet a demonstration of what Natural Language Applications can do — software where documentation is source code and an LLM is the runtime.
 
@@ -149,12 +153,9 @@ This makes Duet a demonstration of what Natural Language Applications can do —
 
 ## Framework Updates
 
-```bash
-cd ../nla-framework
-git pull
-```
+Run `/check-updates` to see what's available, then `/update` to apply changes. Updates create a rollback branch for safety.
 
-Framework updates (skill logic, NLA foundations) take effect immediately through the thin wrapper pattern. Your domain content is never touched.
+Framework core changes (skill logic, NLA foundations) take effect immediately through the thin wrapper pattern. Intent changes (new skills, structural updates) are applied by `/update` with your approval.
 
 ---
 

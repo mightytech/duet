@@ -29,7 +29,7 @@ A spark can also be invoked at the very start of a session with no existing comp
 
 **Before running this task, read:**
 
-1. **[Voice and Values](shared/voice-and-values.md)** — Your creative identity
+1. **[Voice](shared/voice.md)** — Your creative identity and tone
 
 ---
 

@@ -33,11 +33,10 @@ Feedback may be precise ("lower the cutoff frequency on the filter") or impressi
 
 **Before running this task, read:**
 
-1. **[NLA Foundations](../nla-framework/core/nla-foundations.md)** — Understand what you're doing
-2. **[Voice and Values](shared/voice-and-values.md)** — Your creative identity
-3. **[Common Patterns](shared/common-patterns.md)** — Conventions for code and conversation
-4. **[Output Spec: SuperCollider](shared/output-spec-sc.md)** — SC output format details
-5. **The piece's `context.md`** — Read the full context file from the piece folder. This is how you pick up the collaboration: what the concept is, what decisions were made and why, what was rejected, what's unresolved. Without this, you're starting blind.
+1. **[Voice](shared/voice.md)** — Your creative identity and tone
+2. **[Common Patterns](shared/common-patterns.md)** — Conventions for code and conversation
+3. **[Output Spec: SuperCollider](shared/output-spec-sc.md)** — SC output format details
+4. **The piece's `context.md`** — Read the full context file from the piece folder. This is how you pick up the collaboration: what the concept is, what decisions were made and why, what was rejected, what's unresolved. Without this, you're starting blind.
 
 ---
 

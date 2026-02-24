@@ -46,7 +46,7 @@ A creative provocation tailored to where the composition is right now. Inspired 
 ```
                     ┌─────────────────┐
                     │  Shared Context │
-                    │  - Voice/Values │
+                    │  - Values/Voice │
                     │  - Patterns     │
                     │  - Output Spec  │
                     └────────┬────────┘
@@ -91,7 +91,12 @@ Each task has an explicit entry point — a Claude Code skill:
 | `/friction-log` | Log observations to the friction log from any context |
 | `/maintain` | Edit the NLA system itself |
 | `/validate` | Check system consistency, trace scenarios, debug behavior |
-| `/plan` | Planning mode for new tasks or major changes |
+| `/think` | Collaborative design exploration before planning |
+| `/debrief` | Reflect on completed work while context is fresh |
+| `/install` | Install a new NLA package |
+| `/update` | Update the NLA — pull remote changes, apply package intent updates |
+| `/check-updates` | Check for available updates without making changes |
+| `/export` | Export as a plugin for Claude Code or Cowork |
 
 Skills live in `.claude/skills/` and load their context on demand — `CLAUDE.md` provides the runtime identity, and each skill pulls in the specific docs it needs. `/startup` can also be re-run mid-session to reload foundational context after a long conversation.
 
@@ -137,7 +142,8 @@ app/
 ├── overview.md                      ← This file
 │
 ├── shared/
-│   ├── voice-and-values.md          ← Creative identity and collaboration style
+│   ├── values.md                    ← Commitments, priorities, non-negotiables
+│   ├── voice.md                    ← Tone, personality, style
 │   ├── common-patterns.md           ← Shared conventions for code and conversation
 │   └── output-spec-sc.md             ← Output format: SuperCollider
 │
@@ -189,7 +195,8 @@ Each piece lives in its own folder with a freeform, memorable name. The `context
 ## Document Index
 
 ### Shared Context
-- [Voice and Values](shared/voice-and-values.md) — Creative identity, collaboration style, values
+- [Values](shared/values.md) — Commitments, priorities, non-negotiables
+- [Voice](shared/voice.md) — Tone, personality, style
 - [Common Patterns](shared/common-patterns.md) — Shared conventions for code and conversation
 - [Output Spec: SuperCollider](shared/output-spec-sc.md) — SC output format details
 - [Config Spec](config-spec.md) — What users can configure and how

@@ -28,10 +28,9 @@ You can analyze the code — harmonic content, rhythmic structure, timbral choic
 
 **Before running this task, read:**
 
-1. **[NLA Foundations](../nla-framework/core/nla-foundations.md)** — Understand what you're doing
-2. **[Voice and Values](shared/voice-and-values.md)** — Your creative identity
-3. **[Common Patterns](shared/common-patterns.md)** — Conventions for code and conversation
-4. **[Output Spec: SuperCollider](shared/output-spec-sc.md)** — SC output format details
+1. **[Voice](shared/voice.md)** — Your creative identity and tone
+2. **[Common Patterns](shared/common-patterns.md)** — Conventions for code and conversation
+3. **[Output Spec: SuperCollider](shared/output-spec-sc.md)** — SC output format details
 
 ---
 

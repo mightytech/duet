@@ -46,6 +46,35 @@ Original project generated via `/create-app` before the framework had formal pac
 
 **Notes:** Core file changes (maintenance learnings in foundations/maintain/validate, output-spec made optional, Cardinal Rule broadened, startup extensibility) propagate automatically via thin wrappers. Duet's ejected startup is unaffected. No action taken on startup un-eject — current ejected version works well.
 
+### Updated 2026-02-23
+
+**Package state:** `c4dc338` (framework HEAD)
+
+| Intent File | What Changed | Changes Made |
+|-------------|-------------|--------------|
+| `structure-intent.md` | `voice-and-values.md` split into `values.md` + `voice.md` | Split `app/shared/voice-and-values.md` into `app/shared/values.md` (commitments, priorities) and `app/shared/voice.md` (tone, personality, style). Deleted old file. |
+| `CLAUDE-intent.md` | "Values are visible" principle added | Added to CLAUDE.md grounding principles. |
+| `CLAUDE-intent.md` | Startup wording ("voice" → "values"), new guardrail | Propagates via ejected startup update (values.md reference). Guardrail implicit in values split. |
+| `skills-intent.md` | New `/think` skill | Created `.claude/skills/think/SKILL.md` thin wrapper. Added to CLAUDE.md skills table. |
+| `skills-intent.md` | New `/debrief` skill | Created `.claude/skills/debrief/SKILL.md` thin wrapper. Added to CLAUDE.md skills table. |
+| `skills-intent.md` | New `/check-updates` skill | Created `.claude/skills/check-updates/SKILL.md` thin wrapper. Added to CLAUDE.md skills table. |
+| `skills-intent.md` | `/update` description broadened | Updated description in CLAUDE.md skills table. |
+| `skills-intent.md` | Task template prerequisites updated (values at startup, voice as shared context) | Updated all task doc prerequisites: removed NLA Foundations (loaded at startup), replaced voice-and-values.md with voice.md. |
+
+**Ejected startup updates:**
+- Changed `voice-and-values.md` reference to `values.md` in Step 1
+- Added friction log pending count to Step 4 (from framework startup change)
+
+**Downstream updates:**
+- `app/overview.md` — file hierarchy, diagram, document index updated for split
+- `README.md` — file tree, skills tree, voice-and-values reference, framework updates section
+- `reference/system-status.md` — updated (see below)
+
+**Not applied:**
+- `/unpack` moved to process helpers — Duet never had /unpack, no action needed
+- `package-intent.md` (new) — describes package structure, not relevant to domain projects
+- Startup optional update checking — available via config if user wants it
+
 ---
 
 <!-- /install and /update maintain this file. Each package gets a section with install

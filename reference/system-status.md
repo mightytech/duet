@@ -6,7 +6,7 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ## Last Updated
 
-2026-02-21 — Framework update (/plan removed, /export added)
+2026-02-23 — Framework update (voice/values split, /think, /debrief, /check-updates)
 
 ## System State
 
@@ -42,9 +42,13 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 | /install | Ready | Install NLA packages |
 | /update | Ready | Update installed packages |
 | /export | Ready | Export as plugin for Claude Code or Cowork |
+| /check-updates | Ready | Scan for available updates (read-only) |
+| /think | Ready | Collaborative design exploration |
+| /debrief | Ready | Post-work reflection |
 
 ### Recent Changes
 
+- Framework update: voice/values split, added /think /debrief /check-updates, friction log in startup (2026-02-23)
 - Framework update: removed /plan, added /export, added /install and /update to status (2026-02-21)
 - Added auto-play config option and play workflow in common-patterns (2026-02-14)
 - Created /setup skill with environment.md caching (2026-02-14)

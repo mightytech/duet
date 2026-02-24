@@ -69,42 +69,6 @@ Not every entry needs all fields. The essentials are: Observation, Type, Severit
 
 ---
 
-## 2026-02-14 — Selectable voices and natural language config
-
-**Type:** process
-**Severity:** major
-**Task:** all tasks
-**Status:** pending
-
-**Observation:**
-The AI's creative identity (voice-and-values.md) is currently a single fixed voice — the Lennon & McCartney creative partner. Users should be able to choose among voices (creative partner, music educator, production coach, etc.) or describe a custom one. More importantly, because NLA config is prose interpreted by an LLM, users aren't limited to enum choices. They can say "creative partner, but lean into teaching when I'm clearly lost" or "music educator who assumes I know jazz theory but not classical." This applies to all config settings, not just voice.
-
-**Confirmed reason:**
-User identified: "the power of an NLA — you can make big changes without huge changes in code." And on config: "users can say 'option a, but...' or 'option c, and...' This is powerful. It means they can modify application behavior in meaningful ways without rewriting the application... they're baked in features of NLAs and LLMs."
-
-**Generalizable:** yes — both the voice pattern and the natural language config insight apply to any NLA
-
-**Affected documentation:**
-- `app/shared/voice-and-values.md` — Split into invariant values + selectable voice files
-- `app/config-spec.md` — Add Voice setting; broaden all config guidance to embrace natural language modifiers
-- `app/shared/voices/` — New directory for base voice files
-- New: voice template for users writing custom voices
-- All task doc prerequisites — "read voice-and-values.md" becomes "read values.md + configured voice"
-- Framework: `core/nla-foundations.md` or config guidance should discuss natural language config as a fundamental NLA capability
-
-**Proposed fix:**
-1. Split `voice-and-values.md` into `values.md` (invariant: can't hear music, human decides, honesty) and voice files in `voices/` directory.
-2. Ship 2-3 well-crafted base voices. Quality over quantity — each needs iteration.
-3. Voice config setting: a voice name (loads the file), a voice name with natural language modifications, or a fully custom description.
-4. Voice template for custom voices: what to include (identity, communication style, priorities, approach to disagreement), what principles are non-negotiable (the values).
-5. Broaden config-spec guidance: enums are convenient defaults, natural language is the real interface. Every setting can accept "X, but..." or "X, and..." modifiers.
-6. File the natural language config insight as framework feedback — it's a fundamental NLA capability the framework should discuss.
-
-**Notes:**
-This is an architectural change that deserves its own /maintain session. The voice split affects all task doc prerequisites (similar scope to the output-spec rename). The natural language config insight is framework-level and should be added to the framework feedback letter.
-
----
-
 ## Patterns to Watch
 
 *Recurring themes that may need deeper attention:*

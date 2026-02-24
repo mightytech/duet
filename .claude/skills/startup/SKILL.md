@@ -12,7 +12,7 @@ Read these documents **in order:**
 
 1. **`../nla-framework/core/nla-foundations.md`** — What NLAs are, the hybrid model, key principles
 2. **`app/overview.md`** — What this NLA does, how its pieces connect
-3. **`app/shared/voice-and-values.md`** — Creative identity and collaboration style
+3. **`app/shared/values.md`** — Commitments and priorities; shapes every decision across execution and maintenance
 4. **`app/shared/common-patterns.md`** — Shared conventions for code and conversation
 5. **`app/shared/output-spec-sc.md`** — SC output format details
 6. **`config.md`** (if it exists) — User preferences. If config routes to sub-configs, read those too.
@@ -44,6 +44,8 @@ Keep this lightweight — one line, not a wall of text. The user can run `/setup
 ## Step 4: Confirm Ready
 
 Confirm you've loaded foundational context. Note whether config was loaded. Present the active piece (if selected) or await direction.
+
+Check `reference/friction-log.md` for pending entries (status: pending). If any exist, include the count in your summary — "N pending friction log entries" is enough. Note that entries can be processed via `/maintain` or shared with the project's maintainer.
 
 ## When to Re-Run
 
