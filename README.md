@@ -55,7 +55,10 @@ git clone <framework-repo-url> ../nla-framework
 ├── reference/                       # Maintenance records (not loaded at runtime)
 │   ├── design-rationale.md          # Why the system is built this way
 │   ├── friction-log.md              # Learning journal (active entries)
-│   ├── friction-log-archive.md      # Resolved entries
+│   ├── friction-log-archive.md      # Resolved friction log entries
+│   ├── feedback-log.md              # Accepted external feedback, pending implementation
+│   ├── feedback-log-archive.md      # Resolved feedback log entries
+│   ├── installed-packages.md        # Record of installed NLA packages
 │   ├── system-status.md             # Current state snapshot
 │   └── sessions/                    # Maintenance session archives
 ├── .claude/skills/                  # Skill entry points
@@ -71,9 +74,11 @@ git clone <framework-repo-url> ../nla-framework
 │   ├── setup/                       # Check environment, install dependencies
 │   ├── maintain/                    # Framework wrapper
 │   ├── friction-log/                # Framework wrapper
-│   ├── plan/                        # Framework wrapper
 │   ├── preferences/                 # Framework wrapper
-│   └── validate/                    # Framework wrapper
+│   ├── validate/                    # Framework wrapper
+│   ├── install/                     # Framework wrapper
+│   ├── update/                      # Framework wrapper
+│   └── export/                      # Framework wrapper
 └── lib/                             # Traditional code helpers
 ```
 

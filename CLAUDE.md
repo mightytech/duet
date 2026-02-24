@@ -72,7 +72,9 @@ Config directives are governed by `app/config-spec.md`, which defines what's con
 | `/friction-log` | Log observations to the friction log from any context | When you notice something worth recording |
 | `/maintain` | Edit the NLA system itself (docs, skills, lib/) | When the user wants to improve or modify the system |
 | `/validate` | Check system consistency, trace scenarios, debug behavior | When you want to verify the system works as documented |
-| `/plan` | Planning mode for new tasks or major changes | When the user wants to plan before building |
+| `/install` | Install a new NLA package | When adding a new extension or capability |
+| `/update` | Update installed packages to latest | When checking for or applying package updates |
+| `/export` | Export as a plugin for Claude Code or Cowork | When ready to distribute the NLA |
 
 ### If the user asks about the system:
 -> Explain based on `app/overview.md`

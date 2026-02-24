@@ -6,7 +6,7 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 
 ## Last Updated
 
-2026-02-14 — Auto-play support
+2026-02-21 — Framework update (/plan removed, /export added)
 
 ## System State
 
@@ -39,10 +39,13 @@ Current state of the NLA system. Updated by `/maintain` at the close of maintena
 | /finish | Ready | Mark piece as done |
 | /resume | Ready | Bring shelved piece back to active |
 | /setup | Ready | Environment check and dependency installation |
-| /plan | Ready | Planning mode |
+| /install | Ready | Install NLA packages |
+| /update | Ready | Update installed packages |
+| /export | Ready | Export as plugin for Claude Code or Cowork |
 
 ### Recent Changes
 
+- Framework update: removed /plan, added /export, added /install and /update to status (2026-02-21)
 - Added auto-play config option and play workflow in common-patterns (2026-02-14)
 - Created /setup skill with environment.md caching (2026-02-14)
 - Added Sound Engine to config-spec, renamed output-spec to output-spec-sc (2026-02-14)
